@@ -6,9 +6,12 @@ public class Greeting {
 
     String greetingText;
 
-    public Greeting(String author, String greetingText) {
+    String demo;
+
+    public Greeting(String author, String greetingText, String demo) {
         this.author = author;
         this.greetingText = greetingText;
+        this.demo = demo;
     }
 
     public Greeting() {
@@ -20,5 +23,9 @@ public class Greeting {
 
     public String getGreetingText() {
         return greetingText;
+    }
+
+    public String getDemo() {
+        return demo;
     }
 }

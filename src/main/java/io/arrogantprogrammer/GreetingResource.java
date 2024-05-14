@@ -17,19 +17,26 @@ public class GreetingResource {
 
     @POST
     public Greeting addGreeting(Greeting greeting) {
+        if(allGreetings == null || allGreetings.isEmpty()) {
+            initializeGreetings();
+        }
         Log.infof("Adding %s", greeting);
         allGreetings.add(greeting);
         Log.infof("All greetings: %s", allGreetings.size());
         return greeting;
     }
 
+    private void initializeGreetings() {
+        allGreetings = new ArrayList<>(){{
+            add(new Greeting("Roger", "Hello", "Southern Company"));
+            add(new Greeting("Norman", "Bonjour", "Southern Company"));
+        }};
+    }
+
     @GET
     public Greeting hello() {
         if(allGreetings == null || allGreetings.isEmpty()) {
-            allGreetings = new ArrayList<>(){{
-                add(new Greeting("Roger", "Hello"));
-                add(new Greeting("Norman", "Bonjour"));
-            }};
+            initializeGreetings();
         }
         Greeting greeting = getGreeting();
         Log.infof("Returning %s", greeting);
